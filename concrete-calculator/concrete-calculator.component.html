@@ -1,0 +1,151 @@
+<app-frame>
+    
+
+
+    <div style = "position:relative;height:400px;width:100%">
+        <div style = "background-color:white;position:absolute;width:100%;height:100%;opacity:0.82">
+            <h3 class = "pt-4 flex-center text-warning">
+                <i class="fas fa-calculator"></i>
+               <strong class = "mx-2">מחשבון בטון </strong> 
+                
+            </h3>
+ <!-- touch-action="none" for best results from PEP -->
+                <div  class = "mt-3 flex-center">
+                    <div [formGroup] = "boxFormData">
+                        <!--WIDTH-->
+                        <div class = "mt-3 flex-start">
+                            <div style = "max-width:200px">
+                                <mat-form-field [style.width.px]=115>
+                                    <mat-label
+                                    >רוחב</mat-label>
+                                    <input
+                                    (input) = "onChangeComponent()"
+                                    formControlName = "width"
+                                    placeholder="רוחב" 
+                                    type = "number"
+                                    matInput>
+                                </mat-form-field>
+                            </div>
+                        <div class = "flex-start">
+                            <div>
+                                    <mat-select
+                                    (selectionChange) = "onChangeComponent()"
+                                    formControlName = "widthUnit" >
+                                        <mat-option value = "מטר">
+                                            מטר
+                                        </mat-option>
+                                        <mat-option value = "סנטימטר">
+                                            סנטימטר
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                            <div>
+                                <span>{{boxFormData.value.widthUnit}}</span>
+                            </div>
+                            </div>
+                        </div>
+
+
+                        
+                            <!--LENGTH-->
+                            <div class = "mb-3 flex-start">
+                                <div style = "max-width:200px">
+                                    <mat-form-field [style.width.px]=115>
+                                        <mat-label
+                                        >אורך</mat-label>
+                                        <input
+                                        (input) = "onChangeComponent()"
+                                        formControlName = "length"
+                                        placeholder="אורך"
+                                        type = "number" 
+                                        matInput>
+                                    </mat-form-field>
+                                </div>
+                            <div class = "flex-start">
+                                <div>
+                                    <mat-select  
+                                    (selectionChange) = "onChangeComponent()"
+                                    formControlName = "lengthUnit">
+                                    <mat-option value = "מטר">
+                                    מטר
+                                    </mat-option>
+                                    <mat-option value = "סנטימטר">
+                                    סנטימטר
+                                    </mat-option>
+                                </mat-select>
+                                </div>
+                                <div>
+                                    <span>{{boxFormData.value.lengthUnit}}</span>
+                                </div>
+                                </div>
+                            </div>
+
+                        <!--HEIGHT -->
+                        <div class = " flex-start">
+                            <div style = "max-width:200px">
+                                <mat-form-field [style.width.px]=115>
+                                    <mat-label
+                                    >גובה</mat-label>
+                                    <input
+                                    (input) = "onChangeComponent()"
+                                    formControlName = "height"
+                                    placeholder="גובה" 
+                                    type="number"
+                                    matInput>
+                                </mat-form-field>
+                            </div>
+                        <div class = "flex-start">
+                            <div>
+                                    <mat-select 
+                                    (selectionChange) = "onChangeComponent()"
+                                    formControlName = "heightUnit">
+                                    <mat-option value = "מטר">
+                                        מטר
+                                    </mat-option>
+                                    <mat-option value = "סנטימטר">
+                                    סנטימטר
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+                            <div>
+                                <span>{{boxFormData.value.heightUnit}}</span>
+                            </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div  class = "flex-center" style = "font-size:13px">
+                    <span>רוחב:
+                        <strong>
+                            {{ 0 +(getUnitInDecimal(boxFormData.value.widthUnit)
+                                 * boxFormData.value.width).toFixed(4) }}
+                        </strong> 
+                        </span>,&nbsp;&nbsp;
+                    <span>אורך:
+                        <strong>
+                            {{0 + (getUnitInDecimal(boxFormData.value.lengthUnit) 
+                                 * boxFormData.value.length).toFixed(4) }}
+                        </strong>
+                        </span>,&nbsp;&nbsp;
+                    <span>גובה:
+                        <strong>
+                            {{ 0+(getUnitInDecimal(boxFormData.value.heightUnit) 
+                                 * boxFormData.value.height).toFixed(4)     }}
+                        </strong> 
+                        </span>
+                </div>
+                <div  style = "font-size:24px" class = "mt-2 flex-center">
+                    <span> <strong>תוצאה :   </strong>
+                        {{getResult()}}
+                    קוב</span>
+                </div>
+             </div>
+             
+                <canvas id="renderCanvas" style="width: 100%;height:100%;" touch-action="none"></canvas> 
+            
+        </div>
+   
+    
+      
+ </app-frame>
